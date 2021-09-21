@@ -1,7 +1,16 @@
 1. Set up file structure
-- HTML in templates
-- main.py, packages (__init__.py, models.py, forms.py, views.py)
-- static/images
+-- main.py
+-- folder
+    -- static
+        -- image
+    -- templates
+        -- base.html
+    -- __init__.py
+    -- forms.py
+    -- models.py
+    -- views.py
+    -- auth.py
+    -- events.py
 
 2. main.py 
 - Set up creation of app

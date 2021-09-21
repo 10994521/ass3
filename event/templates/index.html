@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+
+   <!-- Hero Section -->
+   <section class="hero">
+      <div class="hero-img">   
+      </div>
+      
+      <div class = "d-flex align-items-center h-100 w-100">
+
+      <div class="col-md-12 p-5-sm col-12 p-0 jumbo">
+         <h1 class="display-2">Seminar Event System</h1>
+         <p class="lead">A place for all events</p>
+      </div>
+
+   </div>
+
+   </section>
+
+{% endblock %}
+
+{% block content %}
+
+   <section class="popular primary" id="event-browse">
+
+      <div class="row">
+         <div class="col-md-8 px-5 py-5 mx-auto bg-transparent">
+            <h1 class="text-center mb-3">Find our most popular seminars</h1>
+            <form class="form-inline d-flex flex-sm-nowrap flex-wrap justify-content-center">
+
+               <select class="form-select" aria-label="Default select example">
+                  <option selected value="business">Business</option>
+                  <option value="mental-health">Mental Health</option>
+                  <option value="mental-health">Technology</option>
+               </select>
+               <button type="submit" class="flex-shrink-1 mt-sm-0 mt-3 btn btn-dark dark ms-2">Submit</button>
+            </form>
+
+         </div>
+
+      </div>
+
+      <div class="container p-2-sm p-3">
+         <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 ">
+               <div class="card mb-4 shadow-lg rounded cover">
+                  <img class="card-img-top w-100" style="object-fit: cover;"alt="Thumbnail [100%x225]" src="./static/event1.jpg">
+                  <div class="card-img-overlay">
+                     <h5 class="card-title "><span class="badge bg-primary badge-primary dark">Business</span></h5>
+                     <h6 class="card-title"><span class="badge bg-warning badge-warning text-dark ">Booked</span></h5>
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
+                     <p class="card-text event-info">Speaker: John Doe</p>
+                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
+                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class=" btn-group-vertical col-12">
+                           <a href="./details.html" class="btn btn-sm btn-outline-dark">View Details</button></a>
+                           <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 ">
+               <div class="card mb-4 shadow-lg rounded cover">
+                  <img class="card-img-top w-100" style="object-fit: cover;"alt="Thumbnail [100%x225]" src="./static/event1.jpg">
+                  <div class="card-img-overlay">
+                     <h5 class="card-title "><span class="badge bg-primary badge-primary dark">Business</span></h5>
+                     <h6 class="card-title"><span class="badge bg-success badge-success ">Upcoming</span></h5>
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
+                     <p class="card-text event-info">Speaker: John Doe</p>
+                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
+                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class=" btn-group-vertical col-12">
+                           <a href="./details.html" class="btn btn-sm btn-outline-dark">View Details</button></a>
+                           <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 ">
+               <div class="card mb-4 shadow-lg rounded cover">
+                  <img class="card-img-top w-100" style="object-fit: cover;"alt="Thumbnail [100%x225]" src="./static/event1.jpg">
+                  <div class="card-img-overlay">
+                     <h5 class="card-title "><span class="badge bg-primary badge-primary dark">Business</span></h5>
+                     <h6 class="card-title"><span class="badge bg-danger badge-danger text-dark">Cancelled</span></h5>
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
+                     <p class="card-text event-info">Speaker: John Doe</p>
+                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
+                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class=" btn-group-vertical col-12">
+                           <a href="./details.html" class="btn btn-sm btn-outline-dark">View Details</button></a>
+                           <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+
+   </section>
+
+   <!-- Browse Section-->
+   <section class="browse secondary">
+      <div class="container text-center vertical-align-pad ">
+         <h1 class="display-6">Select From a Wide Range Of Events</h1>
+         <p class="lead" style="font-size: 1rem;">Become a member to book tickets, post reviews on your past experiences
+            and create your own events for others to attend.</p>
+         <a href="#" class="btn btn-dark dark my-2">Login</a>
+         <a href="#" class="btn btn-light light my-2">Create Account</a>
+      </div>
+   </section>
+
+   <section class="browse primary">
+      <div class="container-fluid text-center vertical-align-pad ">
+         <h1 class="display-6">As a Member Create Events</h1>
+         <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for other people to view and book.</p>
+         <a href="./events.html" class="btn btn-dark dark my-2">Create Event</a>
+      </div>
+   </section>
+
+{% endblock %}

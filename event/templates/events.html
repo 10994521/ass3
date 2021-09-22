@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <section class="hero details">
+      <div class="hero-img img-blur">
+      </div>
+
+      <div class="my-5 container justify-content-center align-items-center">
+
+         <div class="col-md-12 p-5-sm col-12 p-0 jumbo">
+            <h1 class="display-2">Your Existing Events</h1>
+            <p class="lead">Edit or Delete</p>
+         </div>
+
+         <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 ">
+               <div class="card mb-4 shadow-lg rounded cover">
+                  <img class="card-img-top w-100" style="object-fit: cover;" alt="Thumbnail [100%x225]"
+                     src="./static/images/event1.jpg">
+                  <div class="card-img-overlay">
+                     <h5 class="card-title "><span class="badge bg-primary badge-primary dark">Business</span></h5>
+                     <h6 class="card-title"><span class="badge bg-success badge-success ">Upcoming</span></h5>
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
+                     <p class="card-text event-info">Speaker: John Doe</p>
+                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
+                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class=" btn-group-vertical col-12">
+                           <a href="./event-manage.html" class="btn btn-sm btn-outline-dark">Edit Event</button></a>
+                           <a href="#" class="btn btn-sm btn-outline-danger">Delete Event</button></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+       
+          
+         </div>
+
+         
+
+      </div>
+
+
+
+   </section>
+
+  
+   <section class="browse primary">
+      <div class="container-fluid text-center vertical-align-pad ">
+         <h1 class="display-6">Have no existing events? Create one Now!</h1>
+         <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for other people to view and book.</p>
+         <a href="./event-manage.html" class="btn btn-dark dark my-2">Create Event</a>
+      </div>
+   </section>
+{% endblock %}

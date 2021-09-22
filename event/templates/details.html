@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <section class="hero details">
+      <div class="hero-img img-blur">
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
+
+         <div class="card shadow-lg rounded border-0 bg-light col-md-6 col-sm-8 col-10 jumbo event my-5">
+            <img class="card-img-top" style="width: 100%; min-height: 200px; max-height: 300px; object-fit: cover;"
+               alt="Thumbnail [100%x225]" src="./static/event1.jpg">
+            <div class="card-body text-dark">
+               <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
+                     <p class="card-text event-info">Speaker: John Doe</p>
+                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
+                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
+               <p class="card-text event-info d-sm-block d-none">Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Minus fuga incidunt aliquam molestiae. Ut porro nisi omnis quos voluptas quibusdam sunt repellat
+                  aut sit eum eos quas reprehenderit obcaecati fuga mollitia, velit debitis! Nisi tempora maxime at.
+                  Quo, voluptate veniam!</p>
+               <div class="row">
+                  <div class="col-md-12 col-12 comment-text mb-3">
+                      <input id="toggle" type="checkbox" style="visibility:hidden">
+                      <div class="card-header border-0 bg-secondary secondary rounded mb-3">
+                    
+                     <label class ="d-block mb" for="toggle">Comments</label>
+                     </div>
+                     <div class="box"> 
+                     <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Bob Bobson</footer>
+                      </blockquote>
+                      <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Bob Bobson</footer>
+                      </blockquote>
+                      <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Bob Bobson</footer>
+                      </blockquote>
+                      <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Bob Bobson</footer>
+                      </blockquote>
+                      <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Bob Bobson</footer>
+                      </blockquote>
+                     </div>
+                  </div>
+                  
+                  <div class=" btn-group-vertical my-auto mx-auto col-md-4 col-12 h-25">
+                     <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-sm btn-outline-dark">Book
+                        Ticket</button>
+                        <button data-bs-toggle="modal" data-bs-target="#postModal" class="btn btn-sm btn-outline-dark">Post Comment
+                           </button>
+                  </div>
+               </div>
+
+               <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered ">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="bookModalLabel">Tickets for Business Seminar</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <form>
+                              <div class="row justify-content-center align-items-center">
+                                 <div class="col-md-9">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veritatis!
+                                       Iure eius quia sit quas tempora explicabo ut, vel sapiente quae repellendus sunt
+                                       eveniet eaque tempore consectetur quaerat dolore ipsam? Lorem ipsum dolor sit
+                                       amet consectetur adipisicing elit. Labore, vero autem enim velit qui commodi
+                                       quidem ducimus. Fugiat, officia consectetur.</p>
+                                 </div>
+                                 <div class="col-md-3">
+                                    <form>
+                                    <input type="number" placeholder=0 class="form-control" id="quantity-num"></input>
+                                    </form>
+                                 </div>
+                              </div>
+
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                 <a href="index.html"><button type="button" class="btn btn-primary">Book</button></a>
+                              </div>
+                           </form>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered ">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="postModalLabel">Post a comment on event</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <form>
+                              <div class="row justify-content-center align-items-center">
+                                 
+                                 <div class="col-md-12">
+                                    <form>
+                                    <textarea placeholder = "place a comment here..." class="form-control" id="event-comment"></textarea>
+                                 </form>
+                                 </div>
+                              </div>
+
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                 <a href="index.html"><button type="button" class="btn btn-primary">Post</button></a>
+                              </div>
+                           </form>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </section>
+
+
+   <section class="browse secondary">
+      <div class="container-fluid text-center vertical-align-pad ">
+         <h1 class="display-6">Select From a Wide Range Of Events</h1>
+         <p class="lead" style="font-size: 1rem;">Become a member to book tickets, post reviews on your past experiences
+            and create your own events for others to attend.</p>
+         <a href="#" class="btn btn-dark dark my-2">Login</a>
+         <a href="#" class="btn btn-light light my-2">Create Account</a>
+      </div>
+   </section>
+
+
+   <section class="browse primary">
+      <div class="container-fluid text-center vertical-align-pad ">
+         <h1 class="display-6">As a Member Create Events</h1>
+         <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for other people to view and book.</p>
+         <a href="./events.html" class="btn btn-dark dark my-2">Create Event</a>
+      </div>
+   </section>
+{% endblock %}

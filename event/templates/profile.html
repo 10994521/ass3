@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <section class="hero profile">
+      <div class="hero-img img-blur">
+      </div>
+
+      <div class="my-3 container justify-content-center align-items-center">
+         <div class="col-md-12 p-5-sm col-12 p-0 jumbo align-items-center">
+            <h1 class="display-2">Your Bookings</h1>
+         </div>
+         <div class="p-5-sm p-0 jumbo text-dark text-start ">
+            <a href = "./details.html" class="text-decoration-none text-dark"><div class="card mb-3 p-3 profile shadow-lg rounded" style="max-height: 500px;">
+               <div class="row g-0">
+                 <div class="col-md-4">
+                   <img src="./static/event1.jpg" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="...">
+                 </div>
+                 <div class="col-md-8">
+                   <div class="card-body">
+                     <h5 class="card-title">Event: <b>Breaking Business Boundaries</b></h5>
+                     <p class="card-text">Date: 21/01/22</p>
+                     <p class="card-text"><small class="text-muted">Booking ID: 11223344</small></p>
+                   </div>
+                 </div>
+               </div>
+             </div></a>
+         </div>
+         
+
+   
+         
+
+      </div>
+
+
+
+   </section>
+{% endblock %}

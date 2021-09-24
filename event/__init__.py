@@ -24,7 +24,14 @@ def create_app():
     # Blueprints
     from . import views
     app.register_blueprint(views.mainbp)
-    from . import events
-    app.register_blueprint(events.eventbp)
+
+    from . import manage
+    app.register_blueprint(manage.managebp)
+
+    from . import details
+    app.register_blueprint(details.detailsbp)
+
+    from . import profile
+    app.register_blueprint(profile.profilebp)
 
     return app

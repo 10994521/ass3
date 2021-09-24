@@ -7,6 +7,7 @@ mainbp = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
+
 @mainbp.route('/profile')
 def profile():
     return render_template('profile.html')

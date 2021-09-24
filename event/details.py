@@ -8,42 +8,41 @@ from . import db
 import os
 from werkzeug.utils import secure_filename
 
-eventbp = Blueprint('event', __name__, url_prefix ='/events')
+detailsbp = Blueprint('details', __name__, url_prefix ='/details')
 
 #this blueprint has been fully updated
-@eventbp.route('/<id>')
+@detailsbp.route('/<id>')
 def show(id):
     event = Event.query.filter_by(id=id).first()
     # create the comment form
     cform = CommentForm()
     return render_template('events/details.html', event = event, form = cform)
 
-
 #needs to be modified so that it will work for both creation and updating(?)
-@eventbp.route('/create', methods = ['GET', 'POST'])
-def create():
-  print('Method type: ', request.method)
-  form = EventForm() #form needs to be made. 
-  if form.validate_on_submit():
-    db_file_path=check_upload_file(form)
-    event = Event(name=form.name.data,
-    speaker=form.speaker.data,
-    description= form.description.data,
-    date=form.date.data,
-    time=form.time.data,
-    address=form.address.data,
-    image=db_file_path,
-    status=form.status.data)
-    # add the object to the db session
-    db.session.add(event)
-    # commit to the database
-    db.session.commit()
-    print('Successfully created new event', 'success')
-    return redirect(url_for('event.create'))
-  return render_template('events/event-manage.html', form=form)
+# @eventbp.route('/create', methods = ['GET', 'POST'])
+# def create():
+#   print('Method type: ', request.method)
+#   form = EventForm() #form needs to be made. 
+#   if form.validate_on_submit():
+#     db_file_path=check_upload_file(form)
+#     event = Event(name=form.name.data,
+#     speaker=form.speaker.data,
+#     description= form.description.data,
+#     date=form.date.data,
+#     time=form.time.data,
+#     address=form.address.data,
+#     image=db_file_path,
+#     status=form.status.data)
+#     # add the object to the db session
+#     db.session.add(event)
+#     # commit to the database
+#     db.session.commit()
+#     print('Successfully created new event', 'success')
+#     return redirect(url_for('event.create'))
+#   return render_template('events/event-manage.html', form=form)
 
 #this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
-@eventbp.route('/<event>/comment', methods = ['GET', 'POST'])
+@detailsbp.route('/<event>/comment', methods = ['GET', 'POST'])
 def comment(event):
   #here the form is created  form = CommentForm()
   form = CommentForm()#needs to be modified for ass maybe

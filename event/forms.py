@@ -8,7 +8,7 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
 #Create new event. flask form field types and other info at https://wtforms.readthedocs.io/en/2.3.x/fields/
-class DestinationForm(FlaskForm):
+class EventForm(FlaskForm):
   name = StringField('Country', validators=[InputRequired()])
   description = TextAreaField('Description', 
             validators=[InputRequired()])

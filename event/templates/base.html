@@ -36,7 +36,8 @@
                         <a class="nav-item nav-link" href="{{url_for('main.index', _anchor='event-browse')}}">Browse</a>
                         <a class="nav-item nav-link" href="{{url_for('manage.show', id = 1)}}">Manage</a>
                         <a class="nav-item nav-link" href="{{url_for('profile.show', id = 1)}}">Profile</a>
-                        <a class="nav-item nav-link" href="#">Login</a>
+                        <a class="nav-item nav-link" href="{{url_for('auth.register') }}">Register</a>
+                        <a class="nav-item nav-link" href="{{url_for('auth.login') }}">Log In</a>
                     </div>
                 </div>
             </div>

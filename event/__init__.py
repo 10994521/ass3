@@ -13,8 +13,8 @@ def create_app():
 
     app.secret_key = 'somerandomvalue'
 
-    #Configue and initialise DB
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
+    # Configue and initialise DB
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///travel123.sqlite'
     db.init_app(app)
 
     # ImageUploadPat
@@ -33,5 +33,8 @@ def create_app():
 
     from . import profile
     app.register_blueprint(profile.profilebp)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     return app

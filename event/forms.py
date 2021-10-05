@@ -1,7 +1,8 @@
 #copied from class example.
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, SelectField
+from wtforms.fields.core import DateField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -9,12 +10,16 @@ ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
 #Create new event. flask form field types and other info at https://wtforms.readthedocs.io/en/2.3.x/fields/
 class EventForm(FlaskForm):
-  name = StringField('Country', validators=[InputRequired()])
-  description = TextAreaField('Description', 
-            validators=[InputRequired()])
+  topic = SelectField('Topic', choices=[('bus', 'Business'), ('mh', 'Mental Health'), ('tech', 'Technology')])
+  name = StringField('Event Name', validators=[InputRequired()])
+  speaker = StringField('Speaker', validators=[InputRequired()])
+
+  description = TextAreaField('Description', validators=[InputRequired()])
+  date_time = DateTimeField('Event Name', validators=[InputRequired()], format = "%Y-%m-%d %H:%M'")
+  address = StringField('Address', validators=[InputRequired()])
   image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), 
           FileAllowed(ALLOWED_FILE,message='Only supports png,jpg,PNG and JPG')])
-  currency = StringField('Currency', validators=[InputRequired()])
+  status = SelectField('Status', choices=[('green', 'Upcoming'), ('red', 'Cancelled'), ('grey', 'Inactive'), ('yellow', 'Booked')])
   submit = SubmitField("Create")
     
 #User login

@@ -13,9 +13,9 @@ def create_app():
 
     app.secret_key = 'somerandomvalue'
 
-    # DatabaseConfig
-    # app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
-    # db.init_app(app)
+    #Configue and initialise DB
+    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
+    db.init_app(app)
 
     # ImageUploadPat
     # UPLOAD_FOLDER = '/static/image'

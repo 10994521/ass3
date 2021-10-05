@@ -13,10 +13,10 @@ detailsbp = Blueprint('details', __name__, url_prefix ='/details')
 #this blueprint has been fully updated
 @detailsbp.route('/<id>')
 def show(id):
-    event = Event.query.filter_by(id=id).first()
+    #event = Event.query.filter_by(id=id).first()
     # create the comment form
     cform = CommentForm()
-    return render_template('events/details.html', event = event, form = cform)
+    return render_template('events/details.html', form = cform)
 
 #needs to be modified so that it will work for both creation and updating(?)
 # @eventbp.route('/create', methods = ['GET', 'POST'])

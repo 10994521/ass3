@@ -1,38 +1,46 @@
+THINGS TO BE DONE:
+1. Login/Register Authentication
+    - Register creates and stores new users
+        - Ensure error flash messages work
+        - Sends to login page once complete
 
-1. Set up file structure
--- main.py
--- folder
-    -- static
-        -- image
-    -- templates
-        -- base.html
-    -- __init__.py
-    -- forms.py
-    -- models.py
-    -- views.py
-    -- auth.py
-    -- events.py
+    - Login works successfully
+        - Ensure notify user successful login
+        - Sends to home once complete
 
-2. main.py 
-- Set up creation of app
+    - @LoggedRequired Restrictions to be placed on pages
+        - Manage Event only members
 
-3. __init__.py
-- create_app() function 
-- import flask
-- register blueprints
+    - Hide/Show content based on if logged in
+        - NOT LOGGED IN
+            - Hide Manage Events, Profile, Logout (NAVBAR)
+            - Show Register, Login (NAVBAR)
+            - Hide post comment
+            - Hide jumbo html for create/manage event
+            - Show jumbo html sign up/login
+        - LOGGED IN
+            - Hide Register, Login (NAVBAR)
+            - Show Manage Events, Profile, Logout (NAVBAR)
+            - Hide jumbo html sign up/login
+            - Show jumbo html for create/manage event
 
-4. views.py
-- blueprints
-- index route ('/')
-- render index template
+    - Logout works successfully
+        - Return to home page with message
 
-5. templates
-- create base.html
-- split other html in groups to extend base.html
+2. Create/Edit/View Events
+    - Create new events to store in database
+        - Modify code to use correct forms and process
+        - Set up image file system
 
-6. models.py
-- create different models
-- create db version
+    - Show events created by logged in user
+        - Query databse with userid to find their events
+        - Use correct form to update events
 
+    - Modify index page to display events from database dynamically
+        - Create for loop to loop through all entries
 
+    - Modify details page to display events from database dynamically
+        - Change from hardcoded id to dynamic
+        - Pass id of specific event through to determine page
 
+This is a lot, feel free to add if you notice anything missing :)

@@ -1,79 +1,50 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
-   <section class="hero details">
-      <div class="hero-img img-blur">
-      </div>
+<section class="hero details">
+  <div class="hero-img img-blur">
+  </div>
+  <div class="my-3 container  w-100 justify-content-center align-items-center">
+    <div class="p-5-sm p-0 jumbo text-dark text-start">
+      <div class="card p-md-5 p-sm-3 p-1 mb-4 shadow-lg rounded cover">
+        <div class="container-fluid">
+          <div class="page-header">
+            <h4>{{heading}}</h4>
+          </div>
 
-      <div class="my-3 container  w-100 justify-content-center align-items-center">
-        
-         <div class="p-5-sm p-0 jumbo text-dark text-start">
-            <div class="card p-md-5 p-sm-3 p-1 mb-4 shadow-lg rounded cover">
-               <h4>Manage Event</h4>
-               <p>* Indicates required fields</p>
-               <form class="row g-3">
-                  <div class="col-md-12">
-                     <label for="topic" class="form-label">Topic *</label>
-                     <select id="inputState" class="form-select">
-                       <option selected>...</option>
-                       <option>Business</option>
-                       <option>Mental Health</option>
-                       <option>Technology</option>
-                     </select>
-                   </div>
-                   <div class="col-md-12">
-                     <label for="name" class="form-label">Event Name *</label>
-                     <input type="text" class="form-control" id="name" required>
-                   </div>
-                  <div class="col-md-12">
-                    <label for="speaker" class="form-label">Speaker *</label>
-                    <input type="text" class="form-control" id="speaker" required>
-                  </div>
-                  <div class="col-md-12">
-                     <label for="description" class="form-label">Description</label>
-                     <textarea class="form-control" id="description"></textarea>
-                   </div>
-                  <div class="col-md-6">
-                     <label for="date" class="form-label">Date *</label>
-                     <input type="date" class="form-control" id="date" required>
-                   </div>
-                   <div class="col-md-6">
-                     <label for="time" class="form-label">Time *</label>
-                     <input type="time" class="form-control" id="time" required>
-                   </div>
-                  <div class="col-md-12">
-                    <label for="inputAddress" class="form-label">Address *</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="12 Bow St, Morningside, Brisbane, QLD" required>
-                  </div>
-                  <div class="col-md-12">
-                     <label for="image" class="form-label">Image *</label>
-                     <input type="file" class="form-control" id="image" required>
-                   </div>
-                   <div class="col-md-12">
-                     <label for="status" class="form-label">Status *</label>
-                     <select id="staus" class="form-select">
-                       <option selected>Upcoming</option>
-                       <option>Inactive</option>
-                       <option>Booked</option>
-                       <option>Cancelled</option>
-                     </select>
-                   </div>
-                  
-                 
-                  <div class="col-12 justify-content-center text-center">
-                     <a href="/events" class="btn btn-sm btn-outline-dark">Confirm Details</button></a>
-                     <a href="/events" class="btn btn-sm btn-outline-danger">Cancel</button></a>
-                  </div>
-                </form>
+          <!-- flashes any messages to the user -->
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <!-- check if there are any messages -->
+          <div class="container-fluid">
+            <div class="row mt-3 mb-3">
+              <div class="col-md-12">
+                {% for message in messages %}
+                <!--loop through the messages-->
+                <div class="alert alert-info">{{ message }}</div>
+                <!--display as alert-->
+                {% endfor %}
+              </div>
             </div>
-         </div>
+          </div>
+          {% endif %}
+          {% endwith %}
 
-   
-         
+          <!-- Form rendering is simple and easy if using bootstrap -->
+          <div class="col-md-6 ml-5">
+            {{wtf.quick_form(form)}}
+          </div>
 
+          <!-- When you have login form, then do show the user a link to register -->
+          {% if heading|lower =='login' %}
+          <div class="col-md-4 mb-5 ml-5">
+            <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+          </div>
+          {% endif %}
+        </div>
       </div>
-
-
-
-   </section>
+    </div>
+  </div>
+</section>
 {% endblock %}

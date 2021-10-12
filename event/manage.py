@@ -15,28 +15,26 @@ managebp = Blueprint('manage', __name__, url_prefix ='/manage')
 def show(id):
     return render_template('events/events.html')
 
-#needs to be modified so that it will work for both creation and updating(?)
-# @eventbp.route('/create', methods = ['GET', 'POST'])
-# def create():
-#   print('Method type: ', request.method)
-#   form = EventForm() #form needs to be made. 
-#   if form.validate_on_submit():
-#     db_file_path=check_upload_file(form)
-#     event = Event(name=form.name.data,
-#     speaker=form.speaker.data,
-#     description= form.description.data,
-#     date=form.date.data,
-#     time=form.time.data,
-#     address=form.address.data,
-#     image=db_file_path,
-#     status=form.status.data)
-#     # add the object to the db session
-#     db.session.add(event)
-#     # commit to the database
-#     db.session.commit()
-#     print('Successfully created new event', 'success')
-#     return redirect(url_for('event.create'))
-#   return render_template('events/event-manage.html', form=form)
+@managebp.route('/create', methods = ['GET', 'POST'])
+def create():
+  print('Method type: ', request.method)
+  form = EventForm() #form needs to be made. 
+  if form.validate_on_submit():
+    db_file_path=check_upload_file(form)
+    event = Event(name=form.name.data,
+    speaker=form.speaker.data,
+    description= form.description.data,
+    date=form.date_time.data,
+    address=form.address.data,
+    image=db_file_path,
+    status=form.status.data)
+    # add the object to the db session
+    db.session.add(event)
+    # commit to the database
+    db.session.commit()
+    print('Successfully created new event', 'success')
+    return redirect(url_for('details.show', id = event.id))
+  return render_template('events/event-manage.html', form=form)
 
 #this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
 @managebp.route('/<event>/comment', methods = ['GET', 'POST'])

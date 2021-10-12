@@ -49,13 +49,15 @@
                       </blockquote>
                      </div>
                   </div>
-                  
+                  {% if current_user.is_authenticated %}
                   <div class=" btn-group-vertical my-auto mx-auto col-md-4 col-12 h-25">
                      <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-sm btn-outline-dark">Book
                         Ticket</button>
+                       
                         <button data-bs-toggle="modal" data-bs-target="#postModal" class="btn btn-sm btn-outline-dark">Post Comment
                            </button>
                   </div>
+                  {% endif %}
                </div>
 
                <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">

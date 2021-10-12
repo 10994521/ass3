@@ -43,7 +43,7 @@
 
 <section class="popular primary" id="event-browse">
 
-   <div class="row">
+   <div class="row mx-auto">
       <div class="col-md-8 px-5 py-5 mx-auto bg-transparent">
          <h1 class="text-center mb-3">Find our most popular seminars</h1>
          <form class="form-inline d-flex flex-sm-nowrap flex-wrap justify-content-center">
@@ -79,7 +79,7 @@
                      <div class=" btn-group-vertical col-12">
                         <a href="{{url_for('details.show', id = 1)}}" class="btn btn-sm btn-outline-dark">View
                            Details</button></a>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        
                      </div>
                   </div>
                </div>
@@ -101,7 +101,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                      <div class=" btn-group-vertical col-12">
                         <a href="/details" class="btn btn-sm btn-outline-dark">View Details</button></a>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        
                      </div>
                   </div>
                </div>
@@ -123,7 +123,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                      <div class=" btn-group-vertical col-12">
                         <a href="/details" class="btn btn-sm btn-outline-dark">View Details</button></a>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Post Review</button></a>
+                        
                      </div>
                   </div>
                </div>
@@ -132,8 +132,17 @@
       </div>
    </div>
 </section>
-
+{% if current_user.is_authenticated %}
 <!-- Browse Section-->
+<section class="browse primary">
+   <div class="container-fluid text-center vertical-align-pad ">
+      <h1 class="display-6">As a Member Create Events</h1>
+      <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for
+         other people to view and book.</p>
+      <a href="/create" class="btn btn-dark dark my-2">Create Event</a>
+   </div>
+</section>
+{% else %}
 <section class="browse secondary">
    <div class="container text-center vertical-align-pad ">
       <h1 class="display-6">Select From a Wide Range Of Events</h1>
@@ -143,14 +152,6 @@
       <a href="#" class="btn btn-light light my-2" href="{{url_for('auth.register') }}">Create Account</a>
    </div>
 </section>
-
-<section class="browse primary">
-   <div class="container-fluid text-center vertical-align-pad ">
-      <h1 class="display-6">As a Member Create Events</h1>
-      <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for
-         other people to view and book.</p>
-      <a href="/create" class="btn btn-dark dark my-2">Create Event</a>
-   </div>
-</section>
+{% endif %}
 
 {% endblock %}

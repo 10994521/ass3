@@ -1,12 +1,12 @@
 THINGS TO BE DONE:
-1. Login/Register Authentication
+1. Login/Register Authentication ######################################## DONE #################################################
     - Register creates and stores new users
         - Ensure error flash messages work
         - Sends to login page once complete
 
-    - Login works successfully
+    - Login works successfully #################################### DONE #######################################################
         - Ensure notify user successful login
-        - Sends to home once complete
+        - Sends to home once complete 
 
     - @LoggedRequired Restrictions to be placed on pages
         - Manage Event only members

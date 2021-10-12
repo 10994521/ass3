@@ -28,8 +28,7 @@ def show(id):
 #     event = Event(name=form.name.data,
 #     speaker=form.speaker.data,
 #     description= form.description.data,
-#     date=form.date.data,
-#     time=form.time.data,
+#     dateTime=form.date_time.data,
 #     address=form.address.data,
 #     image=db_file_path,
 #     status=form.status.data)

@@ -17,7 +17,7 @@ class EventForm(FlaskForm):
   description = TextAreaField('Description', validators=[InputRequired()])
   date_time = DateTimeField('Event Name', validators=[InputRequired()], format = "%Y-%m-%d %H:%M'")
   address = StringField('Address', validators=[InputRequired()])
-  image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), 
+  image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'), 
           FileAllowed(ALLOWED_FILE,message='Only supports png,jpg,PNG and JPG')])
   status = SelectField('Status', choices=[('green', 'Upcoming'), ('red', 'Cancelled'), ('grey', 'Inactive'), ('yellow', 'Booked')])
   submit = SubmitField("Create")

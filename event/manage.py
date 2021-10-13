@@ -17,11 +17,12 @@ def show(id):
   return render_template('/events/events.html', user = user)
 
 @managebp.route('/create', methods = ['GET', 'POST'])
-def create():
+def create(user):#attempted to add creating user to databse
   print('Method type: ', request.method)
   form = EventForm() #form needs to be made. 
   if form.validate_on_submit():
     db_file_path=check_upload_file(form)
+    creating_user = User.query.filter_by(id=user)#attempted to add creating user to databse
     event = Event(
     name=form.name.data,
     speaker=form.speaker.data,
@@ -29,7 +30,8 @@ def create():
     dateTime=form.date_time.data,
     address=form.address.data,
     image=db_file_path,
-    status=form.status.data)
+    status=form.status.data,
+    user_id = creating_user)#attempted to add creating user to databse
     # add the object to the db session
     db.session.add(event)
     # commit to the database

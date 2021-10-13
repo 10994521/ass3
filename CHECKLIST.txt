@@ -29,11 +29,12 @@ THINGS TO BE DONE:
 
 2. Create/Edit/View Events
     - Create new events to store in database
-        - Modify code to use correct forms and process
-        - Set up image file system
+        - Modify code to use correct forms and process ########################
+        - Set up image file system #########################
+        - Store user id in database on event creation
 
     - Show events created by logged in user
-        - Query databse with userid to find their events
+        - Query databse with userid to find their events [ella 13/10: can't do this without adding userid into table when creating events]
         - Use correct form to update events
 
     - Modify index page to display events from database dynamically

@@ -2,7 +2,7 @@
 
 #import blueprint from flask
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import Event, Comment
+from .models import Event, Comment, User
 from .forms import EventForm, CommentForm
 from . import db
 import os
@@ -13,7 +13,8 @@ managebp = Blueprint('manage', __name__, url_prefix ='/manage')
 #this blueprint has been fully updated
 @managebp.route('/<id>')
 def show(id):
-    return render_template('events/events.html')
+  user = User.query.filter_by(id=id).first()
+  return render_template('/events/events.html', user = user)
 
 @managebp.route('/create', methods = ['GET', 'POST'])
 def create():
@@ -21,10 +22,11 @@ def create():
   form = EventForm() #form needs to be made. 
   if form.validate_on_submit():
     db_file_path=check_upload_file(form)
-    event = Event(name=form.name.data,
+    event = Event(
+    name=form.name.data,
     speaker=form.speaker.data,
     description= form.description.data,
-    date=form.date_time.data,
+    dateTime=form.date_time.data,
     address=form.address.data,
     image=db_file_path,
     status=form.status.data)
@@ -34,7 +36,7 @@ def create():
     db.session.commit()
     print('Successfully created new event', 'success')
     return redirect(url_for('details.show', id = event.id))
-  return render_template('events/event-manage.html', form=form)
+  return render_template('/events/event-manage.html', form=form)
 
 #this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
 @managebp.route('/<event>/comment', methods = ['GET', 'POST'])
@@ -61,9 +63,9 @@ def check_upload_file(form):
 
   BASE_PATH = os.path.dirname(__file__)
   #upload file location – directory of this file/static/image
-  upload_path=os.path.join(BASE_PATH,'static/image',secure_filename(filename))
+  upload_path=os.path.join(BASE_PATH,'static/images',secure_filename(filename))
   #store relative path in DB as image location in HTML is relative
-  db_upload_path='/static/image/' + secure_filename(filename)
+  db_upload_path='/static/images/' + secure_filename(filename)
   #save the file and return the db upload path  
   fp.save(upload_path)
   return db_upload_path

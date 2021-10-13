@@ -9,16 +9,13 @@
 
          <div class="card shadow-lg rounded border-0 bg-light col-md-6 col-sm-8 col-10 jumbo event my-5">
             <img class="card-img-top" style="width: 100%; min-height: 200px; max-height: 300px; object-fit: cover;"
-               alt="Thumbnail [100%x225]" src="./static/images/event1.jpg">
+               alt="Thumbnail [100%x225]" src="{{event.image}}">
             <div class="card-body text-dark">
-               <p class="card-text event-info"><b>Breaking Business Boundaries</b></p>
-                     <p class="card-text event-info">Speaker: John Doe</p>
-                     <p class="card-text event-info">Time: Fri 21st Jan | 5:00 PM</p>
-                     <p class="card-text event-info">Location: 11 Bow St, Morningside, Brisbane, QLD</p>
-               <p class="card-text event-info d-sm-block d-none">Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Minus fuga incidunt aliquam molestiae. Ut porro nisi omnis quos voluptas quibusdam sunt repellat
-                  aut sit eum eos quas reprehenderit obcaecati fuga mollitia, velit debitis! Nisi tempora maxime at.
-                  Quo, voluptate veniam!</p>
+               <p class="card-text event-info"><b>{{event.name}}</b></p>
+                     <p class="card-text event-info">{{event.speaker}}</p>
+                     <p class="card-text event-info">{{event.dateTime}}</p>
+                     <p class="card-text event-info">{{event.address}}</p>
+               <p class="card-text event-info d-sm-block d-none">{{event.description}}</p>
                <div class="row">
                   <div class="col-md-12 col-12 comment-text mb-3">
                       <input id="toggle" type="checkbox" style="visibility:hidden">

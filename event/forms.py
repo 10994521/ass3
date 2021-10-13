@@ -11,7 +11,7 @@ ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
 #Create new event. flask form field types and other info at https://wtforms.readthedocs.io/en/2.3.x/fields/
 class EventForm(FlaskForm):
-  topic = SelectField('Topic', choices=[('bus', 'Business'), ('mh', 'Mental Health'), ('tech', 'Technology')])
+  topic = SelectField('Topic', choices=[('Business'), ('Mental Health'), ('Technology')])
   name = StringField('Event Name', validators=[InputRequired()])
   speaker = StringField('Speaker', validators=[InputRequired()])
 
@@ -20,7 +20,7 @@ class EventForm(FlaskForm):
   address = StringField('Address', validators=[InputRequired()])
   image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'), 
           FileAllowed(ALLOWED_FILE,message='Only supports png,jpg,PNG and JPG')])
-  status = SelectField('Status', choices=[('green', 'Upcoming'), ('red', 'Cancelled'), ('grey', 'Inactive'), ('yellow', 'Booked')])
+  status = SelectField('Status', choices=[('Upcoming'), ('Cancelled'), ('Inactive'), ('Booked')])
   submit = SubmitField("Create")
     
 #User login

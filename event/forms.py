@@ -25,13 +25,13 @@ class EventForm(FlaskForm):
     
 #User login
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
+    email_id=StringField("Email", validators=[InputRequired('Enter email')])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
 #User register
 class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
+    user_name=StringField("Name", validators=[InputRequired("Please enter your name")])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
     
     #linking two fields - password should be equal to data entered in confirm

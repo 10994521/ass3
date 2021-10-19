@@ -1,7 +1,7 @@
 #copied from class example.
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, SelectField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, SelectField, IntegerField
 from wtforms.fields.core import DateField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, Required
 from flask_wtf.file import FileRequired, FileField, FileAllowed
@@ -18,6 +18,7 @@ class EventForm(FlaskForm):
   description = TextAreaField('Description', validators=[InputRequired()])
   date_time = DateTimeLocalField('Date and Time', format='%Y-%m-%dT%H:%M')
   address = StringField('Address', validators=[InputRequired()])
+  num_tickets = IntegerField('Tickets', validators=[InputRequired()])
   image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'), 
           FileAllowed(ALLOWED_FILE,message='Only supports png,jpg,PNG and JPG')])
   status = SelectField('Status', choices=[('Upcoming'), ('Cancelled'), ('Inactive'), ('Booked')])

@@ -124,24 +124,25 @@
 
       </div>
    </section>
-
-
-   <section class="browse secondary">
-      <div class="container-fluid text-center vertical-align-pad ">
-         <h1 class="display-6">Select From a Wide Range Of Events</h1>
-         <p class="lead" style="font-size: 1rem;">Become a member to book tickets, post reviews on your past experiences
-            and create your own events for others to attend.</p>
-         <a href="#" class="btn btn-dark dark my-2">Login</a>
-         <a href="#" class="btn btn-light light my-2">Create Account</a>
-      </div>
-   </section>
-
-
+   {% if current_user.is_authenticated %}
+   <!-- Browse Section-->
    <section class="browse primary">
       <div class="container-fluid text-center vertical-align-pad ">
          <h1 class="display-6">As a Member Create Events</h1>
-         <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for other people to view and book.</p>
-         <a href="./events.html" class="btn btn-dark dark my-2">Create Event</a>
+         <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for
+            other people to view and book.</p>
+         <a href="{{url_for('manage.create', id = current_user.id)}}" class="btn btn-dark dark my-2">Create Event</a>
       </div>
    </section>
+   {% else %}
+   <section class="browse secondary">
+      <div class="container text-center vertical-align-pad ">
+         <h1 class="display-6">Select From a Wide Range Of Events</h1>
+         <p class="lead" style="font-size: 1rem;">Become a member to book tickets, post reviews on your past experiences
+            and create your own events for others to attend.</p>
+         <a href="#" class="btn btn-dark dark my-2" href="{{url_for('auth.login') }}">Login</a>
+         <a href="#" class="btn btn-light light my-2" href="{{url_for('auth.register') }}">Create Account</a>
+      </div>
+   </section>
+   {% endif %}
 {% endblock %}

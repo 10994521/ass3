@@ -96,7 +96,7 @@
       <h1 class="display-6">As a Member Create Events</h1>
       <p class="lead" style="font-size: 1rem;">Create an event with a speaker, topic, image, description and a date for
          other people to view and book.</p>
-      <a href="{{url_for('manage.create')}}" class="btn btn-dark dark my-2">Create Event</a>
+      <a href="{{url_for('manage.create', id = current_user.id)}}" class="btn btn-dark dark my-2">Create Event</a>
    </div>
 </section>
 {% else %}

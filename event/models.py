@@ -29,7 +29,8 @@ class Event(db.Model):
     dateTime = db.Column(db.DateTime, default=datetime.now())
     address = db.Column(db.String(200))
     image = db.Column(db.String(400))
-    status = db.Column(db.Enum('Upcoming','Cancelled','Inactive','Booked'), default='Upcoming')  
+    status = db.Column(db.Enum('Upcoming', 'Cancelled',
+                       'Inactive', 'Booked'), default='Upcoming')
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='event')

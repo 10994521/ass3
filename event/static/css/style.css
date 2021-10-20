@@ -1,3 +1,8 @@
+.btn-default {
+   margin-top: 0.5em !important;
+   box-shadow: 1px 2px 5px #8080805c;
+}
+
 body {
    margin: 0;
 }

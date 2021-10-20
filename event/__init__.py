@@ -43,13 +43,11 @@ def create_app():
 
     from . import details
     app.register_blueprint(details.detailsbp)
-    app.register_blueprint(details.eventbp)
 
     from . import profile
     app.register_blueprint(profile.profilebp)
 
     from . import auth
     app.register_blueprint(auth.bp)
-
 
     return app

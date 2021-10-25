@@ -1,7 +1,7 @@
 # copied from the class example. Being modified for events.
 
 # import blueprint from flask
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from .models import Event, Comment, User
 from .forms import EventForm, CommentForm
 from . import db
@@ -33,6 +33,8 @@ def create(id):  # attempted to add creating user to databse
             dateTime=form.date_time.data,
             address=form.address.data,
             image=db_file_path,
+            topic=form.topic.data,
+            tickets=form.tickets.data,
             status=form.status.data,
             user_id=id)  # attempted to add creating user to databse
         # add the object to the db session
@@ -43,7 +45,66 @@ def create(id):  # attempted to add creating user to databse
         return redirect(url_for('details.show', id=event.id))
     return render_template('/events/event-manage.html', form=form)
 
+@managebp.route('/edit/<id>', methods=['GET', 'POST'])
+def edit(id):  # attempted to add creating user to databse
+    print('Method type: ', request.method)
+    event = Event.query.filter_by(id=id).first()
+    form = EventForm(obj = event)  # pass through event to prefil form with existing data
+
+    # form.name.data = event.name
+    # form.speaker.data = event.speaker
+    # form.description.data = event.description
+    # form.date_time.data = event.dateTime
+    # form.address.data = event.address
+    # db_file_path = event.image
+    # form.status.data = event.status
+
+    if form.validate_on_submit():
+        db_file_path = check_upload_file(form)
+        # creating_user = User.query.filter_by(id=id)#attempted to add creating user to databse
+        formEvent = Event(
+            name=form.name.data,
+            speaker=form.speaker.data,
+            description=form.description.data,
+            dateTime=form.date_time.data,
+            address=form.address.data,
+            image=db_file_path,
+            topic=form.topic.data,
+            tickets=form.tickets.data,
+            status=form.status.data,
+            user_id=id)  # attempted to add creating user to databse
+
+        #change each attribute to new values
+        event.name = formEvent.name
+        event.speaker = formEvent.speaker
+        event.description = formEvent.description
+        event.dateTime = formEvent.dateTime
+        event.address = formEvent.address
+        event.image = formEvent.image
+        event.topic = formEvent.topic
+        event.tickets = formEvent.tickets
+        event.status = formEvent.status
+
+        # commit to the database
+        db.session.commit()
+        print('Successfully edited event', 'success')
+        return redirect(url_for('details.show', id=event.id))
+    return render_template('/events/event-manage.html', form=form)
 # this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
+
+
+#NEEDS TO BE FINISHED, COULDN'T WORK IT OUT
+# @managebp.route('/delete/<id>', methods=['GET', 'POST'])
+# def delete(id):  # attempted to add creating user to databse
+#     print('Method type: ', request.method)
+#     event = Event.query.filter_by(id=id).first()
+#     comments = Comment.query.filter_by(event_id=id).all()
+#     # commit to the database
+#     db.session.delete(comments) 
+#     db.session.delete(event) 
+#     db.session.commit()
+
+#     return render_template('/events/events.html', user = session['user_id'])
 
 
 def check_upload_file(form):

@@ -23,15 +23,17 @@ class User(db.Model, UserMixin):
 class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.Enum('Business', 'Mental Health',
+                       'Technology'))
     name = db.Column(db.String(80))
     speaker = db.Column(db.String(80))
     description = db.Column(db.String(200))
     dateTime = db.Column(db.DateTime, default=datetime.now())
     address = db.Column(db.String(200))
     image = db.Column(db.String(400))
+    tickets = db.Column(db.Integer)
     status = db.Column(db.Enum('Upcoming', 'Cancelled',
                        'Inactive', 'Booked'), default='Upcoming')
-
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='event')
 

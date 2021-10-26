@@ -94,17 +94,16 @@ def edit(id):  # attempted to add creating user to databse
 
 
 #NEEDS TO BE FINISHED, COULDN'T WORK IT OUT
-# @managebp.route('/delete/<id>', methods=['GET', 'POST'])
-# def delete(id):  # attempted to add creating user to databse
-#     print('Method type: ', request.method)
-#     event = Event.query.filter_by(id=id).first()
-#     comments = Comment.query.filter_by(event_id=id).all()
-#     # commit to the database
-#     db.session.delete(comments) 
-#     db.session.delete(event) 
-#     db.session.commit()
+@managebp.route('/delete/<id>', methods=['GET', 'POST'])
+def delete(id):  # attempted to add creating user to databse
+    print('Method type: ', request.method)
+    event = Event.query.filter_by(id=id).first()
+    # commit to the database
+    Comment.query.filter(Comment.event_id == id).delete()
+    db.session.delete(event) 
+    db.session.commit()
 
-#     return render_template('/events/events.html', user = session['user_id'])
+    return render_template('/index.html')
 
 
 def check_upload_file(form):

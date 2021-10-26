@@ -46,15 +46,17 @@
    <div class="row mx-auto">
       <div class="col-md-8 px-5 py-5 mx-auto bg-transparent">
          <h1 class="text-center mb-3">Find our most popular seminars</h1>
-         <form class="form-inline d-flex flex-sm-nowrap flex-wrap justify-content-center">
-
-            <select class="form-select" aria-label="Default select example">
-               <option selected value="business">Business</option>
-               <option value="mental-health">Mental Health</option>
-               <option value="mental-health">Technology</option>
+         <form class="form-inline d-flex flex-nowrap flex-column" action="{{url_for('main.search')}}" >
+            <input type="text" name="search" class="form-control flex-grow-2 my-1 mr-sm-2"  placeholder="Search here"id="SearchForm">
+            <select class="form-select flex-grow-2 mt-1 mb-2" name="topic" aria-label="Default select example">
+               <option selected value="">Choose topic</option>
+               <option value="Business">Business</option>
+               <option value="Mental health">Mental Health</option>
+               <option value="Technology">Technology</option>
             </select>
-            <button type="submit" class="flex-shrink-1 mt-sm-0 mt-3 btn btn-dark dark ms-2">Submit</button>
-         </form>
+            <button type="submit" class="flex-shrink-1 mt-sm-0 mt-3 btn btn-dark dark">Submit</button>
+          </form>
+
 
       </div>
 

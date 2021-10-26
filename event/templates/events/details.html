@@ -18,7 +18,9 @@
                      <p class="card-text event-info">{{event.address}}</p>
                <p class="card-text event-info d-sm-block d-none">{{event.description}}</p>
                <div class="row">
+                  {% if current_user.is_authenticated %}
                   {{wtf.quick_form(form,"/details/{0}/comment".format(event.id))}}
+                  {% endif %}
                   <div class="col-md-12 col-12 comment-text mb-3">
                       <input id="toggle" type="checkbox" style="visibility:hidden">
                       <div class="card-header border-0 bg-secondary secondary rounded mb-3">

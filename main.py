@@ -14,6 +14,6 @@ if __name__ == '__main__':
 # db.create_all()
 # quit()
 
-from event import db, create_app
-db.create_all(app=create_app())
-exit()
+# from event import db, create_app
+# db.create_all(app=create_app())
+# exit()

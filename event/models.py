@@ -1,11 +1,16 @@
 from . import db
 from datetime import datetime
 from flask_login import UserMixin
+from sqlalchemy.dialects.postgresql import ENUM
 
-import event
+import event 
 
 # unchanged. Don't think it's necessary
+topics = ('Business', 'Mental Health', 'Technology')
+topic_enum = ENUM(*topics, name="topics")
 
+statuss = ('Upcoming', 'Cancelled', 'Inactive', 'Booked')
+status_enum = ENUM(*statuss,  name = "statuss")
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -23,8 +28,7 @@ class User(db.Model, UserMixin):
 class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
-    topic = db.Column(db.Enum('Business', 'Mental Health',
-                       'Technology'))
+    topic = db.Column(db.Enum(topic_enum))
     name = db.Column(db.String(80))
     speaker = db.Column(db.String(80))
     description = db.Column(db.String(200))
@@ -32,8 +36,7 @@ class Event(db.Model):
     address = db.Column(db.String(200))
     image = db.Column(db.String(400))
     tickets = db.Column(db.Integer)
-    status = db.Column(db.Enum('Upcoming', 'Cancelled',
-                       'Inactive', 'Booked'), default='Upcoming')
+    status = db.Column(db.Enum(status_enum), default='Upcoming')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='event')
 

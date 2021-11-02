@@ -2,6 +2,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import os
 
 # Database initialise
 db = SQLAlchemy()
@@ -15,7 +16,8 @@ def create_app():
     app.secret_key = 'somerandomvalue'
 
     # Configue and initialise DB
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seminar.sqlite'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seminar.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
     db.init_app(app)
 
     # initialize the login manager

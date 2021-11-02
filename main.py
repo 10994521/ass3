@@ -13,3 +13,7 @@ if __name__ == '__main__':
 # ctx.push()
 # db.create_all()
 # quit()
+
+from event import db, create_app
+db.create_all(app=create_app())
+exit()

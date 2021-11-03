@@ -16,8 +16,9 @@ def create_app():
     app.secret_key = 'somerandomvalue'
 
     # Configue and initialise DB
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'] #comment this line out to continue working
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seminar.sqlite' #uncomment this line out to continue working locally
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'] #comment this line out to continue working
+    # uncomment this line out to continue working locally
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seminar.sqlite'
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tyyjkpppacgiyf:37227327e0c352c32571c032609e11aca512d9bdd72d7dbfc85a28bc4b7846d8@ec2-34-202-178-115.compute-1.amazonaws.com:5432/dfvlcd4r19st1u'
     db.init_app(app)
 

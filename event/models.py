@@ -3,6 +3,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from sqlalchemy.dialects.postgresql import ENUM
 
+
 import event
 
 # unchanged. Don't think it's necessary
@@ -17,7 +18,8 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    emailid = db.Column(db.String(100), nullable=False)
+    # unique doesn't work for some reason?
+    emailid = db.Column(db.String(100), nullable=False, unique=True)
     password_hash = db.Column(db.String(225), nullable=False)
 
     events = db.relationship('Event', backref='user')
@@ -42,7 +44,8 @@ class Event(db.Model):
     status = db.Column(db.Enum('Upcoming', 'Cancelled',
                        'Inactive', 'Booked', name="status"), default='Upcoming')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.relationship('Comments', backref='event')
+
+    comments = db.relationship('Comment', backref='event')
     orders = db.relationship('Orders', backref='event')
 
     def __repr__(self):

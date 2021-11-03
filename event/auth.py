@@ -1,7 +1,7 @@
 # copied straight from the class example. To be modified if required.
 
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .forms import LoginForm, RegisterForm
 # new imports:
 from flask_login import login_user, login_required, logout_user
@@ -59,7 +59,6 @@ def login():
         if error is None:
             # all good, set the login_user of flask_login to manage the user
             login_user(u1)
-            session['user_id'] = u1
             return redirect(url_for('main.index'))
         else:
             flash(error)

@@ -2,10 +2,14 @@
 
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, SelectField, IntegerField
+from wtforms.fields import html5 as h5fields
 from wtforms.fields.core import DateField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, Required
+from wtforms.i18n import messages_path
+from wtforms.validators import InputRequired, Length, Email, EqualTo, Required, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from wtforms.fields.html5 import DateTimeLocalField, DateTimeField
+import event
+
 
 ALLOWED_FILE = {'PNG', 'JPG', 'png', 'jpg'}
 
@@ -63,5 +67,6 @@ class CommentForm(FlaskForm):
 
 
 class OrderForm(FlaskForm):
-    text = TextAreaField('Comment', [InputRequired()])
+    tickets = h5fields.IntegerField('Book tickets: ', [InputRequired(), NumberRange(
+        min=1, max=100, message="Number exceeds tickets availible!")])
     submit = SubmitField('Create')

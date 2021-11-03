@@ -45,11 +45,13 @@ def create(id):  # attempted to add creating user to databse
         return redirect(url_for('details.show', id=event.id))
     return render_template('/events/event-manage.html', form=form)
 
+
 @managebp.route('/edit/<id>', methods=['GET', 'POST'])
 def edit(id):  # attempted to add creating user to databse
     print('Method type: ', request.method)
     event = Event.query.filter_by(id=id).first()
-    form = EventForm(obj = event)  # pass through event to prefil form with existing data
+    # pass through event to prefil form with existing data
+    form = EventForm(obj=event)
 
     # form.name.data = event.name
     # form.speaker.data = event.speaker
@@ -74,7 +76,7 @@ def edit(id):  # attempted to add creating user to databse
             status=form.status.data,
             user_id=id)  # attempted to add creating user to databse
 
-        #change each attribute to new values
+        # change each attribute to new values
         event.name = formEvent.name
         event.speaker = formEvent.speaker
         event.description = formEvent.description
@@ -93,14 +95,14 @@ def edit(id):  # attempted to add creating user to databse
 # this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
 
 
-#NEEDS TO BE FINISHED, COULDN'T WORK IT OUT
+# NEEDS TO BE FINISHED, COULDN'T WORK IT OUT
 @managebp.route('/delete/<id>', methods=['GET', 'POST'])
 def delete(id):  # attempted to add creating user to databse
     print('Method type: ', request.method)
     event = Event.query.filter_by(id=id).first()
     # commit to the database
     Comment.query.filter(Comment.event_id == id).delete()
-    db.session.delete(event) 
+    db.session.delete(event)
     db.session.commit()
 
     return render_template('/index.html')

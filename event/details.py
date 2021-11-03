@@ -1,12 +1,16 @@
 # copied from the class example. Being modified for events.
 
 # import blueprint from flask
+from os import waitpid
 from flask import Blueprint, render_template, request, redirect, url_for
+from flask.helpers import flash
 from sqlalchemy.orm import defaultload
-from .models import Event, Comment, User
+from .models import Event, Comment, User, Orders
 from flask_login import login_required, current_user
-from .forms import CommentForm
+from .forms import CommentForm, OrderForm
 from . import db
+import time
+from sqlalchemy import update
 
 detailsbp = Blueprint('details', __name__, url_prefix='/details')
 
@@ -19,7 +23,8 @@ def show(id):
     event = Event.query.filter_by(id=id).first()
     # create the comment form
     cform = CommentForm()
-    return render_template('/events/details.html', event=event, form=cform)
+    oform = OrderForm()
+    return render_template('/events/details.html', event=event, cform=cform, oform=oform)
 
 # needs to be modified so that it will work for both creation and updating(?)
 # @eventbp.route('/create', methods = ['GET', 'POST'])
@@ -51,7 +56,6 @@ def show(id):
 def comment(event):
     # using the comment form
     form = CommentForm()
-    print("aaaaaaaaa")
     # get the destination object associated to the page and the comment
     event_obj = Event.query.filter_by(id=event).first()
     if form.validate_on_submit():
@@ -64,9 +68,47 @@ def comment(event):
         db.session.commit()
 
         # flashing a message which needs to be handled by the html
-        #flash('Your comment has been added', 'success')
+        # flash('Your comment has been added', 'success')
         print('Your comment has been added', 'success')
     # using redirect sends a GET request to destination.show
+    return redirect(url_for('details.show', id=event))
+
+
+@detailsbp.route('/<event>/order', methods=['GET', 'POST'])
+def order(event):
+    form = OrderForm()
+    event_obj = Event.query.filter_by(id=event).first()
+
+    if form.validate_on_submit():
+        order = Orders(user=current_user,
+                       Quantity=form.tickets.data, event=event_obj)
+        db.session.add(order)
+        db.session.commit()
+
+        formEvent = Event(
+            name=event_obj.name,
+            speaker=event_obj.speaker,
+            description=event_obj.description,
+            dateTime=event_obj.dateTime,
+            address=event_obj.address,
+            image=event_obj.image,
+            topic=event_obj.topic,
+            tickets=event_obj.tickets - form.tickets.data,
+            status=event_obj.status,
+            user_id=event_obj.user.id)
+        event_obj.name = formEvent.name
+        event_obj.speaker = formEvent.speaker
+        event_obj.description = formEvent.description
+        event_obj.dateTime = formEvent.dateTime
+        event_obj.address = formEvent.address
+        event_obj.image = formEvent.image
+        event_obj.topic = formEvent.topic
+        event_obj.tickets = formEvent.tickets
+        event_obj.status = formEvent.status
+        # sqllite can't update two things at once
+        db.session.commit()
+
+        flash('Your order has been added, success')
     return redirect(url_for('details.show', id=event))
 
 # didnt change this as i dont think we need to

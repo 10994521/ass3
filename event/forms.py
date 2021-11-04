@@ -14,7 +14,7 @@ ALLOWED_FILE = {'PNG', 'JPG', 'png', 'jpg'}
 
 class EventForm(FlaskForm):
     topic = SelectField(
-        'Topic', choices=[('Business'), ('Mental Health'), ('Technology')])
+        'Topic', choices=[('Business', 'Business'), ('Mental Health', 'Mental Health'), ('Technology', 'Technology')])
     name = StringField('Event Name', validators=[InputRequired()])
     speaker = StringField('Speaker', validators=[InputRequired()])
 
@@ -22,9 +22,14 @@ class EventForm(FlaskForm):
     date_time = DateTimeLocalField('Date and Time', format='%Y-%m-%dT%H:%M')
     address = StringField('Address', validators=[InputRequired()])
     image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'),
+<<<<<<< Updated upstream
                                                  FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,PNG and JPG')])
+=======
+                                                 FileAllowed(ALLOWED_FILE, message='Only supports png,jpg, PNG and JPG')])
+    tickets = IntegerField('Number of Tickets', validators=[InputRequired()])
+>>>>>>> Stashed changes
     status = SelectField('Status', choices=[
-                         ('Upcoming'), ('Cancelled'), ('Inactive'), ('Booked')])
+                         ('Upcoming', 'Upcoming'), ('Cancelled', 'Cancelled'), ('Inactive', 'Inactive'), ('Booked', 'Booked')])
     submit = SubmitField("Create")
 
 # User login

@@ -21,30 +21,6 @@ def show(id):
     cform = CommentForm()
     return render_template('/events/details.html', event=event, form=cform)
 
-# needs to be modified so that it will work for both creation and updating(?)
-# @eventbp.route('/create', methods = ['GET', 'POST'])
-# def create():
-#   print('Method type: ', request.method)
-#   form = EventForm()
-#   if form.validate_on_submit():
-#      db_file_path=check_upload_file(form)
-#      event = Event(name=form.name.data,
-#      speaker=form.speaker.data,
-#      description= form.description.data,
-#      dateTime=form.date_time.data,
-#      address=form.address.data,
-#      image=db_file_path,
-#      status=form.status.data)
-#      # add the object to the db session
-#      db.session.add(event)
-#      # commit to the database
-#      db.session.commit()
-#      print('Successfully created new event', 'success')
-#      return redirect(url_for('details.show', id = event.id))
-#   return render_template('', form=form)
-
-# this blueprint has been updated. Comment form may need to be altered for relevance in forms.py
-
 
 @detailsbp.route('/<event>/comment', methods=['GET', 'POST'])
 # creates a commont on a certain destination
@@ -69,6 +45,56 @@ def comment(event):
     # using redirect sends a GET request to destination.show
     return redirect(url_for('details.show', id=event))
 
+<<<<<<< Updated upstream
+=======
+
+@detailsbp.route('/<event>/order', methods=['GET', 'POST'])
+def order(event):
+    form = OrderForm()
+    event_obj = Event.query.filter_by(id=event).first()
+
+    if form.validate_on_submit():
+        if (form.tickets.data > event_obj.tickets):
+            flash('Not enough tickets left')
+            return redirect(url_for('details.show', id=event))
+        order = Orders(user=current_user,
+                       Quantity=form.tickets.data, event=event_obj)
+        db.session.add(order)
+        db.session.commit()
+
+        formEvent = Event(
+            name=event_obj.name,
+            speaker=event_obj.speaker,
+            description=event_obj.description,
+            dateTime=event_obj.dateTime,
+            address=event_obj.address,
+            image=event_obj.image,
+            topic=event_obj.topic,
+            tickets=event_obj.tickets - form.tickets.data,
+            status=event_obj.status,
+            user_id=event_obj.user.id)
+
+
+
+        event_obj.name = formEvent.name
+        event_obj.speaker = formEvent.speaker
+        event_obj.description = formEvent.description
+        event_obj.dateTime = formEvent.dateTime
+        event_obj.address = formEvent.address
+        event_obj.image = formEvent.image
+        event_obj.topic = formEvent.topic
+        event_obj.tickets = formEvent.tickets
+        event_obj.status = formEvent.status
+
+        if formEvent.tickets == 0:
+            event_obj.status = "Booked"
+        # sqllite can't update two things at once
+        db.session.commit()
+
+        flash('Your order has been added, success')
+    return redirect(url_for('details.show', id=event))
+
+>>>>>>> Stashed changes
 # didnt change this as i dont think we need to
 # def check_upload_file(form):
 #   fp = form.image.data

@@ -9,22 +9,26 @@
          <div class="col-md-12 p-5-sm col-12 p-0 jumbo align-items-center">
             <h1 class="display-2">Your Bookings</h1>
          </div>
+         {% for order in user.orders %}
          <div class="p-5-sm p-0 jumbo text-dark text-start ">
-            <a href = "/details" class="text-decoration-none text-dark"><div class="card mb-3 p-3 profile shadow-lg rounded" style="max-height: 500px;">
+            <a href = "{{url_for('details.show', id = order.event.id)}}" class="text-decoration-none text-dark"><div class="card mb-3 p-3 profile shadow-lg rounded" style="max-height: 500px;">
                <div class="row g-0">
                  <div class="col-md-4">
-                   <img src="./static/images/event1.jpg" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="...">
+                   <img src="{{order.event.image}}" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="...">
                  </div>
                  <div class="col-md-8">
                    <div class="card-body">
-                     <h5 class="card-title">Event: <b>Breaking Business Boundaries</b></h5>
-                     <p class="card-text">Date: 21/01/22</p>
-                     <p class="card-text"><small class="text-muted">Booking ID: 11223344</small></p>
+                     <h5 class="card-title">Event: {{order.event.name}}</h5>
+                     <p class="card-text">Date: {{order.event.dateTime}}</p>
+                     <p class="card-text">Num Tickets: {{order.Quantity}}</p>
+                     <p class="card-text"><small class="text-muted">Booking ID: {{order.id}}</small></p>
+
                    </div>
                  </div>
                </div>
              </div></a>
          </div>
+         {% endfor %}
          
 
    

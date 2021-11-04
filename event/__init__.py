@@ -15,6 +15,11 @@ def create_app():
     app.secret_key = 'somerandomvalue'
 
     # Configue and initialise DB
+<<<<<<< Updated upstream
+=======
+    #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'] #comment this line out to continue working
+    # uncomment this line out to continue working locally
+>>>>>>> Stashed changes
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seminar.sqlite'
     db.init_app(app)
 

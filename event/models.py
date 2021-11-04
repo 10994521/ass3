@@ -41,6 +41,7 @@ class Event(db.Model):
     address = db.Column(db.String(200))
     image = db.Column(db.String(400))
     tickets = db.Column(db.Integer)
+    price = db.Column(db.Float)
     status = db.Column(db.Enum('Upcoming', 'Cancelled',
                        'Inactive', 'Booked', name="status"), default='Upcoming')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -72,6 +73,7 @@ class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Quantity = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.now())
+    subtotal = db.Column(db.Float)
     # foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))

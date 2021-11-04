@@ -35,6 +35,7 @@ def create(id):  # attempted to add creating user to databse
             image=db_file_path,
             topic=form.topic.data,
             tickets=form.tickets.data,
+            price=form.price.data,
             status=form.status.data,
             user_id=id)  # attempted to add creating user to databse
         # add the object to the db session
@@ -73,6 +74,7 @@ def edit(id):  # attempted to add creating user to databse
             image=db_file_path,
             topic=form.topic.data,
             tickets=form.tickets.data,
+            price=form.price.data,
             status=form.status.data,
             user_id=id)  # attempted to add creating user to databse
 
@@ -85,6 +87,7 @@ def edit(id):  # attempted to add creating user to databse
         event.image = formEvent.image
         event.topic = formEvent.topic
         event.tickets = formEvent.tickets
+        event.price = formEvent.price
         event.status = formEvent.status
 
         # commit to the database

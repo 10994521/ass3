@@ -60,23 +60,36 @@ def order(event):
             flash('Not enough tickets left')
             return redirect(url_for('details.show', id=event))
         order = Orders(user=current_user,
-                       Quantity=form.tickets.data, event=event_obj)
+                       Quantity=form.tickets.data, subtotal=form.tickets.data * event_obj.price, event=event_obj)
         db.session.add(order)
         db.session.commit()
 
-        formEvent = Event(
-            name=event_obj.name,
-            speaker=event_obj.speaker,
-            description=event_obj.description,
-            dateTime=event_obj.dateTime,
-            address=event_obj.address,
-            image=event_obj.image,
-            topic=event_obj.topic,
-            tickets=event_obj.tickets - form.tickets.data,
-            status=event_obj.status,
-            user_id=event_obj.user.id)
-
-
+        if event_obj.tickets <= 0:
+            formEvent = Event(
+                name=event_obj.name,
+                speaker=event_obj.speaker,
+                description=event_obj.description,
+                dateTime=event_obj.dateTime,
+                address=event_obj.address,
+                image=event_obj.image,
+                topic=event_obj.topic,
+                tickets=event_obj.tickets - form.tickets.data,
+                price=event_obj.price,
+                status="Booked",
+                user_id=event_obj.user.id)
+        else:
+            formEvent = Event(
+                name=event_obj.name,
+                speaker=event_obj.speaker,
+                description=event_obj.description,
+                dateTime=event_obj.dateTime,
+                address=event_obj.address,
+                image=event_obj.image,
+                topic=event_obj.topic,
+                tickets=event_obj.tickets - form.tickets.data,
+                price=event_obj.price,
+                status=event_obj.status,
+                user_id=event_obj.user.id)
 
         event_obj.name = formEvent.name
         event_obj.speaker = formEvent.speaker
@@ -86,6 +99,7 @@ def order(event):
         event_obj.image = formEvent.image
         event_obj.topic = formEvent.topic
         event_obj.tickets = formEvent.tickets
+        event_obj.price = formEvent.price
         event_obj.status = formEvent.status
 
         if formEvent.tickets == 0:

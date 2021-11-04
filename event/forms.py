@@ -1,7 +1,7 @@
 # copied from class example.
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, SelectField, IntegerField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, SelectField, IntegerField, FloatField
 from wtforms.fields import html5 as h5fields
 from wtforms.fields.core import DateField
 from wtforms.i18n import messages_path
@@ -9,6 +9,7 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo, Required, 
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from wtforms.fields.html5 import DateTimeLocalField, DateTimeField
 import event
+from .models import Event
 
 
 ALLOWED_FILE = {'PNG', 'JPG', 'png', 'jpg'}
@@ -28,7 +29,9 @@ class EventForm(FlaskForm):
     address = StringField('Address', validators=[InputRequired()])
     image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'),
                                                  FileAllowed(ALLOWED_FILE, message='Only supports png,jpg, PNG and JPG')])
-    tickets = IntegerField('Number of Tickets', validators=[InputRequired()])
+    tickets = IntegerField('Number of Tickets', validators=[InputRequired(), NumberRange(
+        min=1, message="tickets must be above 0")])
+    price = FloatField('Ticket Price', validators=[InputRequired()])
     status = SelectField('Status', choices=[
                          ('Upcoming', 'Upcoming'), ('Cancelled', 'Cancelled'), ('Inactive', 'Inactive'), ('Booked', 'Booked')])
     submit = SubmitField("Create")
@@ -67,6 +70,7 @@ class CommentForm(FlaskForm):
 
 
 class OrderForm(FlaskForm):
+
     tickets = h5fields.IntegerField('Book tickets: ', [InputRequired(), NumberRange(
         min=1, max=100, message="Number exceeds tickets availible!")])
-    submit = SubmitField('Create')
+    submit = SubmitField('Place order')

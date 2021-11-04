@@ -3,7 +3,10 @@
 
 {% block content %}
 
-      <!-- flashes any messages to the user -->
+      
+   <section class="hero details">
+      <div class="hero-img img-blur">
+         <!-- flashes any messages to the user -->
       {% with messages = get_flashed_messages() %}
       {% if messages %}
       <!-- check if there are any messages -->
@@ -20,8 +23,6 @@
       </div>
       {% endif %}
       {% endwith %}
-   <section class="hero details">
-      <div class="hero-img img-blur">
       </div>
 
       <div class="d-flex justify-content-center align-items-center">
@@ -36,6 +37,7 @@
                      <p class="card-text event-info">{{event.address}}</p>
                <p class="card-text event-info d-sm-block d-none">{{event.description}}</p>
                <p class="card-text event-info"><b>Tickets remaining: </b>{{event.tickets}}</p>
+               <p class="card-text event-info"><b>Price: </b>${{event.price}}</p>
                <div class="row">
                   {% if current_user.is_authenticated %}
                   {{wtf.quick_form(cform,"/details/{0}/comment".format(event.id))}}

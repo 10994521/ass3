@@ -65,7 +65,18 @@
                   <div class=" btn-group-vertical my-auto mx-auto col-md-4 col-12 h-25">
                      <div class="row justify-content-center align-items-center">
                         <div class="m-2">
+                           {% if event.status == "Upcoming" %}
                            {{wtf.quick_form(oform,"/details/{0}/order".format(event.id))}}
+                           {% endif %}
+                           {% if event.status == "Booked" %}
+                           <p>Event is booked out</p>
+                           {% endif %}
+                           {% if event.status == "Cancelled" %}
+                           <p>Event is cancelled</p>
+                           {% endif %}
+                           {% if event.status == "Inactive" %}
+                           <p>Event is inactive</p>
+                           {% endif %}
                         </div>
                      </div>
                   </div>

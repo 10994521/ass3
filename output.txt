@@ -1,0 +1,70 @@
+10994521 (35):
+      Create CHECKLIST.txt
+      Update Checklist
+      user 1
+      User 1
+      HTML readded
+      ADDED
+      Set up of Heroku
+      Change name of form
+      Correcting Nav Links
+      Links/DB Models
+      Updated Checklist
+      Start on create Event
+      Fixed Log In
+      Fixed Create Event
+      Stash Changes commit to main
+      Edit Event Functionality
+      Delete event working
+      Update to requirements.txt
+      Updated Procfile
+      Procfile Changes
+      Update requirements.txt
+      Procfile requirement change
+      PostSQL modify
+      More sql fixes
+      More changes
+      More Changes to URL
+      URI changes
+      URI Changes
+      Heroku Changes
+      Heroku Test
+      Change Procfile
+      Profile Page working
+      Removal of useless code
+      Heroku Deployment Fixes
+      User Model Update
+
+AlexW151 (21):
+      Update main.py
+      Added stuff
+      Fixed links!
+      user html and login/register pages
+      Created db file
+      Edited database
+      Login functionality
+      Adjusted index.html
+      details.html viewing
+      Comment functionality and other QoL changes
+      stashing changed to main
+      Merge branch 'Alex'
+      Search functionality
+      Merge branch 'main' of https://github.com/10994521/ass3
+      user authenticate on posting comments
+      Merge branch 'main' of https://github.com/10994521/ass3
+      Fixed login links
+      Orders table
+      FIXED LOGIN!
+      Ticket functionality
+      Price functionality
+
+Ella Rigs (8):
+      Extended existing pages over base.html
+      Beginnings of blueprints/forms
+      Minor variable changes
+      Merge branch 'main' of https://github.com/10994521/ass3 into main
+      Event creation into database
+      Create .DS_Store
+      working on event form
+      Send creating user to Event table
+

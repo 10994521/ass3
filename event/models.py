@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), nullable=False)
     # unique doesn't work for some reason?
     emailid = db.Column(db.String(100), nullable=False, unique=True)
+    phonenum = db.Column(db.Integer, nullable=True, unique=True)
+    address = db.Column(db.String(100), nullable=True)
     password_hash = db.Column(db.String(225), nullable=False)
 
     events = db.relationship('Event', backref='user')
